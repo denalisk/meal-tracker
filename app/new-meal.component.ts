@@ -46,7 +46,6 @@ export class NewMealComponent {
       this.alerting = false;
       this.passedData[0] = true;
       this.passedData[1] = newMeal;
-      console.log(this.passedData);
       this.sendData();
     }
   }
