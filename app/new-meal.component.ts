@@ -13,6 +13,7 @@ import { Meal } from './models/meal.model';
     </div>
     <div class="col-sm-6">
       <button type="button" class="btn btn-large btn-info" (click)="clickedSaveButton()">Save Meal</button>
+      <button type="button" class="btn btn-large btn-danger" (click)="clickedCancelButton()">Cancel</button>
       <div *ngIf="alerting" class="bg-danger">
         <h4>Please make sure you give a name and calories for your meal!</h4>
       </div>
@@ -29,6 +30,7 @@ export class NewMealComponent {
   public newCalories: number = null;
   public newDetails: string = null;
   public alerting: boolean = false;
+  public passedData: any[] = [false, null];
 
   public clickedSaveButton(): void {
     if(this.newName === null || this.newCalories === null) {
@@ -42,8 +44,18 @@ export class NewMealComponent {
       this.newCalories = null;
       this.newDetails = null;
       this.alerting = false;
-      this.newMealSender.emit(newMeal);
+      this.passedData[0] = true;
+      this.passedData[1] = newMeal;
+      console.log(this.passedData);
+      this.sendData();
     }
-    console.log(this.alerting);
+  }
+
+  public clickedCancelButton(): void {
+    this.sendData();
+  }
+
+  public sendData(): void {
+    this.newMealSender.emit(this.passedData);
   }
 }

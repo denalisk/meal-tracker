@@ -25,8 +25,11 @@ export class AppComponent {
   public currentMeal: Meal = null;
 
 
-  public addMeal(newMeal: Meal): void {
-    newMeal.addMeal();
+  public addMeal(passedData: any[]): void {
+    if (passedData[0]) {
+      passedData[1].addMeal();
+    }
+    this.isCreatingNew = false;
   }
 
   public editMeal(passedData: string): void {
@@ -36,6 +39,12 @@ export class AppComponent {
   public editButtonClicked(selectedMeal: Meal) {
     this.currentMeal = selectedMeal;
     this.isEditing = true;
+    this.isCreatingNew = false;
+  }
+
+  public createMealButton(): void {
+    this.isCreatingNew = true;
+    this.isEditing = false;
   }
 
 }
