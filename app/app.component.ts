@@ -12,7 +12,18 @@ import { Meal } from './models/meal.model';
   <edit-meal (dataEmitter)="editMeal($event)" [currentMeal]="currentMeal" *ngIf="isEditing">edit meal not working</edit-meal>
   <new-meal (newMealSender)="addMeal($event)" *ngIf="isCreatingNew">new meal not working</new-meal>
   <button type="button" class="btn btn-primary" *ngIf="isCreatingNew === false && isEditing === false" (click)="createMealButton()">Add a new meal entry</button>
-  <button type="button" class="btn btn-info" *ngIf="isAddingFilter === false" (click)="addFilterButton()">Filter Food By Calories</button>
+  <div class="panel panel-info">
+    <div class="panel-heading" (click)="addFilterButton()">
+      <h4>Filter Food By Calories</h4>
+    </div>
+    <div class="panel-body" *ngIf="isAddingFilter" >
+      <label>I want meals that were:</label>
+      <input type="radio" [(ngModel)]="filterDirection = true" [value]="greater-than" class="form-control" checked>Greater Than<br>
+      <input type="radio" [(ngModel)]="filterDirection = false" [value]="less-than" class="form-control">Less Than<br>
+      <input type="number" (input)="filterAmount = $event.target.value" class="form-control">
+      <button type="button" class="btn btn-danger" (click)="addFilter()">Add Filter</button>
+    </div>
+  </div>
 
   `
 })
@@ -22,7 +33,10 @@ export class AppComponent {
 
   public isCreatingNew: boolean = false;
   public isEditing: boolean = false;
+
   public isAddingFilter: boolean = false;
+  public filterDirection: boolean = true;
+  public filterAmount: number = 0;
 
   public currentMeal: Meal = null;
 
@@ -47,6 +61,10 @@ export class AppComponent {
   public createMealButton(): void {
     this.isCreatingNew = true;
     this.isEditing = false;
+  }
+
+  public addFilter(): void {
+    console.log("The filter values are: filterDirection: " + this.filterDirection + " and filterAmount is " + this.filterAmount);
   }
 
 }
