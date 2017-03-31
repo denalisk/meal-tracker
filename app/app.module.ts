@@ -1,12 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent }   from './app.component';
 import { FormsModule }  from '@angular/forms';
-import { Component, Injectable, NgModule } from '@angular/core';
-import { HttpModule, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { NgModule } from '@angular/core';
 
 @NgModule({
-  imports: [ BrowserModule, FormsModule, Injectable, HttpModule ],
+  imports: [ BrowserModule, FormsModule ],
   declarations: [ AppComponent ],
   bootstrap:    [ AppComponent ]
 })
