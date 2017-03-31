@@ -6,7 +6,7 @@ import { Meal } from './models/meal.model';
   template: `
   <div class="container-fluid">
 
-    <div class="" *ngFor="let currentMeal of history">
+    <div class="" *ngFor="let currentMeal of history | calorieSorter:filterData">
       <div class="col-sm-4">
         <div class="panel panel-warning">
           <div class="panel-heading">
@@ -28,7 +28,11 @@ import { Meal } from './models/meal.model';
 
 export class MealListComponent {
   @Input() history: Meal[];
+  @Input() filterAmount: number;
+  @Input() filterDirection: boolean;
   @Output() editMealSender = new EventEmitter();
+
+  public filterData: any[] = [this.filterDirection, this.filterAmount];
 
   public editButtonClicked(selectedMeal: Meal): void {
     this.editMealSender.emit(selectedMeal);
