@@ -10,6 +10,6 @@ import { Meal } from './models/meal.model';
   `
 })
 
-export class EditMealComponent {
+export class MealListComponent {
   public testString: string = "Data from meal list component is connected";
 }

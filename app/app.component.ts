@@ -8,7 +8,9 @@ import { Meal } from './models/meal.model.ts';
   <div class="jumbotron">
     <h1>Hello, World</h1>
   </div>
-  <meal-list></meal-list>
+  <meal-list>meal list not working</meal-list>
+  <edit-meal>edit meal not working</edit-meal>
+  <new-meal>new meal not working</new-meal>
 
   `
 })

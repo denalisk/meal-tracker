@@ -3,7 +3,7 @@ export class Meal {
 
 
   constructor(public name: string, public calories: number, public details: string) {
-    this.mealId = idCounter;
+    this.mealId = Meal.idCounter;
     Meal.idCounter++;
   };
 
