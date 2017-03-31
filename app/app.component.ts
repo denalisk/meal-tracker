@@ -12,6 +12,7 @@ import { Meal } from './models/meal.model';
   <edit-meal (dataEmitter)="editMeal($event)" [currentMeal]="currentMeal" *ngIf="isEditing">edit meal not working</edit-meal>
   <new-meal (newMealSender)="addMeal($event)" *ngIf="isCreatingNew">new meal not working</new-meal>
   <button type="button" class="btn btn-primary" *ngIf="isCreatingNew === false && isEditing === false" (click)="createMealButton()">Add a new meal entry</button>
+  <button type="button" class="btn btn-info" *ngIf="isAddingFilter === false" (click)="addFilterButton()">Filter Food By Calories</button>
 
   `
 })
@@ -21,6 +22,7 @@ export class AppComponent {
 
   public isCreatingNew: boolean = false;
   public isEditing: boolean = false;
+  public isAddingFilter: boolean = false;
 
   public currentMeal: Meal = null;
 
