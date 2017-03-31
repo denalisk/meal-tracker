@@ -8,8 +8,8 @@ import { Meal } from './models/meal.model';
   <div class="jumbotron">
     <h1>Hello, World</h1>
   </div>
-  <meal-list [history]="history">meal list not working</meal-list>
-  <edit-meal (editSender)="editMeal($event)" *ngIf="isEditing">edit meal not working</edit-meal>
+  <meal-list (editMealSender)="editbuttonClicked($event)" [history]="history">meal list not working</meal-list>
+  <edit-meal (editSender)="editMeal($event)" [currentMeal]="currentMeal" *ngIf="isEditing">edit meal not working</edit-meal>
   <new-meal (newMealSender)="addMeal($event)" *ngIf="isCreatingNew">new meal not working</new-meal>
 
   `
@@ -38,6 +38,10 @@ export class AppComponent {
         }
       }
     }
+  }
+
+  public editButtonClicked(selectedMeal: Meal) {
+    this.currentMeal = selectedMeal;
   }
 
 }
