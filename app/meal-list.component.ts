@@ -26,8 +26,9 @@ import { Meal } from './models/meal.model';
 })
 
 export class MealListComponent {
+  @Input() history: Meal[];
+
   public testString: string = "Data from meal list component is connected";
-  public history: Meal[] = Meal.history;
 
   public
 }

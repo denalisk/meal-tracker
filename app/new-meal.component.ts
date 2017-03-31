@@ -5,7 +5,7 @@ import { Meal } from './models/meal.model';
   selector: 'new-meal',
   template: `
   <div class="container">
-    <h1>new meal component data: {{testString}}</h1>
+    <h1>Add a new meal!</h1>
     <div class="new-meal-form form-group col-sm-6">
       <input type="text" name="new-name" [value]="newName" (input)="newName = $event.target.value" class="form-control" placeholder="What meal did you eat?">
       <input type="number" name="new-calories" [value]="newCalories" (input)="newCalories = $event.target.value" class="form-control" placeholder="How many calories?">
