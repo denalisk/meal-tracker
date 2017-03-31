@@ -11,7 +11,7 @@ import { Meal } from './models/meal.model';
   <meal-list (editMealSender)="editButtonClicked($event)" [history]="history">meal list not working</meal-list>
   <edit-meal (dataEmitter)="editMeal($event)" [currentMeal]="currentMeal" *ngIf="isEditing">edit meal not working</edit-meal>
   <new-meal (newMealSender)="addMeal($event)" *ngIf="isCreatingNew">new meal not working</new-meal>
-  <button type="button" class="btn btn-primary" (click)="createMealButton()">Add a new meal entry</button>
+  <button type="button" class="btn btn-primary" *ngIf="isCreatingNew === false && isEditing === false" (click)="createMealButton()">Add a new meal entry</button>
 
   `
 })
