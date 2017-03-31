@@ -11,8 +11,12 @@ import { Meal } from './models/meal.model';
   <div class="container-fluid">
     <div class="col-md-4">
       <edit-meal (dataEmitter)="editMeal($event)" [currentMeal]="currentMeal" *ngIf="isEditing">edit meal not working</edit-meal>
-      <new-meal (newMealSender)="addMeal($event)" *ngIf="isCreatingNew">new meal not working</new-meal>
-      <button type="button" class="btn btn-primary" *ngIf="isCreatingNew === false && isEditing === false" (click)="createMealButton()">Add a new meal entry</button>
+      <div class="panel panel-success" *ngIf="isEditing === false">
+        <div class="panel-heading" (click)="createMealButton()">
+          <h3>Add a new meal entry</h3>
+        </div>
+        <new-meal (newMealSender)="addMeal($event)" *ngIf="isCreatingNew">new meal not working</new-meal>
+      </div>
       <div class="panel panel-info">
         <div class="panel-heading" (click)="toggleFilterButton()">
           <h4>Filter Food By Calories</h4>
@@ -68,7 +72,7 @@ export class AppComponent {
   }
 
   public createMealButton(): void {
-    this.isCreatingNew = true;
+    this.isCreatingNew = (!(this.isCreatingNew));
     this.isEditing = false;
   }
 
