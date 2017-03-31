@@ -7,15 +7,15 @@ import { Meal } from './models/meal.model';
 })
 
 export class CaloriePipe implements PipeTransform {
-  transform(input: Meal[], filterData: any[]) {
+  transform(input: Meal[]) {
     let output: Meal[] = [];
     for(let meal of input) {
-      if (filterData[0]) {
-        if (meal.calories > filterData[1]) {
+      if (Meal.filterDirection) {
+        if (meal.calories > Meal.filterAmount) {
           output.push(meal);
         }
       } else {
-        if (meal.calories < filterData[1]) {
+        if (meal.calories < Meal.filterAmount) {
           output.push(meal);
         }
       }

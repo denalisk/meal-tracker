@@ -19,13 +19,11 @@ import { Meal } from './models/meal.model';
     <div class="panel-body" *ngIf="isAddingFilter" >
       <label>I want meals that are</label>
       <div class="form-group">
-        <label>
-        <input type="radio" [(ngModel)]="filterDirection" [value]="true"> Greater Than</label><br>
-        <label>
-        <input type="radio" [(ngModel)]="filterDirection" [value]="false"> Less Than</label>
+        <button type="button" (click)="changeFilterDirection(1)" [class]="buttonClass(1)">Greater Than</button>
+        <button type="button" (click)="changeFilterDirection(0)" [class]="buttonClass(0)">Less Than</button>
       </div>
       <label>number of calories:</label>
-      <input type="number" (input)="filterAmount = $event.target.value" class="form-control">
+      <input type="number" (input)="changeFilterAmount($event.target.value)" class="form-control">
       <button type="button" class="btn btn-danger" (click)="addFilter()">Add Filter</button>
     </div>
   </div>
@@ -73,15 +71,29 @@ export class AppComponent {
   }
 
   public addFilter(): void {
-    console.log("The filter values are: filterDirection: " + this.filterDirection + " and filterAmount is " + this.filterAmount);
+    Meal.filterDirection = this.filterDirection;
+    Meal.filterAmount = this.filterAmount;
+    this.isAddingFilter = false;
   }
 
-  public filterDirectionFunction(oneOrZero: number) {
+  public changeFilterDirection(oneOrZero: number): void {
     if (oneOrZero) {
       this.filterDirection = true;
     } else {
       this.filterDirection = false;
     }
+  }
+
+  public changeFilterAmount(newAmount: number): void {
+    this.filterAmount = newAmount;
+  }
+
+  public buttonClass(oneOrZero: number): string {
+    let outputString: string = "btn btn-default";
+    if (Number(this.filterDirection) === oneOrZero) {
+      outputString = "btn btn-lg btn-success";
+    }
+    return outputString;
   }
 
 }

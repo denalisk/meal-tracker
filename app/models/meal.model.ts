@@ -8,6 +8,8 @@ export class Meal {
   };
 
   public static idCounter: number = 1;
+  public static filterAmount: number = 0;
+  public static filterDirection: boolean = true;
 
   public static history: Meal[] = [
     new Meal('Tortillas, jam, cheese', 565, 'So delicious and frugal'),

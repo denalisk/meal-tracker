@@ -12,6 +12,8 @@ var Meal = (function () {
         Meal.history.push(this);
     };
     Meal.idCounter = 1;
+    Meal.filterAmount = 0;
+    Meal.filterDirection = true;
     Meal.history = [
         new Meal('Tortillas, jam, cheese', 565, 'So delicious and frugal'),
         new Meal('Tortillas, jam, cheese', 565, 'Still lovin\' it'),
