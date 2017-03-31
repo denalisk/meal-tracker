@@ -13,8 +13,8 @@ import { Meal } from './models/meal.model';
       <input type="number" name="calories" [value]="currentMeal.calories" (input)="currentMeal.calories = $event.target.value" class="form-control">
       <label>Notes</label>
       <input type="text" name="details" [value]="currentMeal.details" (input)="currentMeal.details = $event.target.value" class="form-control">
-      <button type="button" class="btn btn-success" (click)="saveButtonClicked()">Save Changes</button>
-      <button type="button" class="btn btn-danger" (click)="cancelButtonClicked()">Cancel</button>
+      <button type="button" class="btn btn-success" (click)="buttonClicked()">Save Changes</button>
+      <button type="button" class="btn btn-danger" (click)="buttonClicked()">Cancel</button>
     </div>
     <div *ngIf="alerting" class="bg-danger">
       <h4>Please make sure you give a name and calories for your meal!</h4>
@@ -25,6 +25,11 @@ import { Meal } from './models/meal.model';
 
 export class EditMealComponent {
   @Input() currentMeal: Meal;
+  @Output() dataEmitter = new EventEmitter();
 
   public testString: string = "Data from edit meal component is connected";
+
+  public buttonClicked(): void {
+    this.dataEmitter.emit("clicky");
+  }
 }
