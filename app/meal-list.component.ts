@@ -16,6 +16,7 @@ import { Meal } from './models/meal.model';
             <ul>
               <li>Calories: {{currentMeal.calories}}</li>
               <li>Notes: {{currentMeal.details}}</li>
+              <button type="button" (click)="editButtonClicked(currentMeal)">Edit this entry</button>
             </ul>
           </div>
         </div>
@@ -27,8 +28,11 @@ import { Meal } from './models/meal.model';
 
 export class MealListComponent {
   @Input() history: Meal[];
+  @Output() editMealSender = new EventEmitter();
+
+  public editButtonClicked(selectedMeal: Meal): void {
+    this.editMealSender.emit(selectedMeal);
+  }
 
   public testString: string = "Data from meal list component is connected";
-
-  public
 }

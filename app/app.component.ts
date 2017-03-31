@@ -9,14 +9,20 @@ import { Meal } from './models/meal.model';
     <h1>Hello, World</h1>
   </div>
   <meal-list [history]="history">meal list not working</meal-list>
-  <edit-meal (editSender)="editMeal($event)">edit meal not working</edit-meal>
-  <new-meal (newMealSender)="addMeal($event)">new meal not working</new-meal>
+  <edit-meal (editSender)="editMeal($event)" *ngIf="isEditing">edit meal not working</edit-meal>
+  <new-meal (newMealSender)="addMeal($event)" *ngIf="isCreatingNew">new meal not working</new-meal>
 
   `
 })
 
 export class AppComponent {
   public history: Meal[] = Meal.history;
+
+  public isCreatingNew: boolean = false;
+  public isEditing: boolean = false;
+
+  public currentMeal: Meal = null;
+
 
   public addMeal(newMeal: Meal): void {
     newMeal.addMeal();
