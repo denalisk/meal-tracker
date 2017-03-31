@@ -6,25 +6,31 @@ import { Meal } from './models/meal.model';
   selector: 'app-root',
   template: `
   <div class="jumbotron">
-    <h1>Hello, World</h1>
+    <h1>iAte</h1>
   </div>
-  <meal-list (editMealSender)="editButtonClicked($event)" [history]="history" [filterDirection]="filterDirection" [filterAmount]="filterAmount">meal list not working</meal-list>
-  <edit-meal (dataEmitter)="editMeal($event)" [currentMeal]="currentMeal" *ngIf="isEditing">edit meal not working</edit-meal>
-  <new-meal (newMealSender)="addMeal($event)" *ngIf="isCreatingNew">new meal not working</new-meal>
-  <button type="button" class="btn btn-primary" *ngIf="isCreatingNew === false && isEditing === false" (click)="createMealButton()">Add a new meal entry</button>
-  <div class="panel panel-info">
-    <div class="panel-heading" (click)="toggleFilterButton()">
-      <h4>Filter Food By Calories</h4>
-    </div>
-    <div class="panel-body" *ngIf="isAddingFilter" >
-      <label>I want meals that are</label>
-      <div class="form-group">
-        <button type="button" (click)="changeFilterDirection(1)" [class]="buttonClass(1)">Greater Than</button>
-        <button type="button" (click)="changeFilterDirection(0)" [class]="buttonClass(0)">Less Than</button>
+  <div class="container-fluid">
+    <div class="col-md-4">
+      <edit-meal (dataEmitter)="editMeal($event)" [currentMeal]="currentMeal" *ngIf="isEditing">edit meal not working</edit-meal>
+      <new-meal (newMealSender)="addMeal($event)" *ngIf="isCreatingNew">new meal not working</new-meal>
+      <button type="button" class="btn btn-primary" *ngIf="isCreatingNew === false && isEditing === false" (click)="createMealButton()">Add a new meal entry</button>
+      <div class="panel panel-info">
+        <div class="panel-heading" (click)="toggleFilterButton()">
+          <h4>Filter Food By Calories</h4>
+        </div>
+        <div class="panel-body" *ngIf="isAddingFilter" >
+          <label>I want meals that are</label>
+          <div class="form-group">
+            <button type="button" (click)="changeFilterDirection(1)" [class]="buttonClass(1)">Greater Than</button>
+            <button type="button" (click)="changeFilterDirection(0)" [class]="buttonClass(0)">Less Than</button>
+          </div>
+          <label>number of calories:</label>
+          <input type="number" (input)="changeFilterAmount($event.target.value)" class="form-control">
+          <button type="button" class="btn btn-danger" (click)="addFilter()">Add Filter</button>
+        </div>
       </div>
-      <label>number of calories:</label>
-      <input type="number" (input)="changeFilterAmount($event.target.value)" class="form-control">
-      <button type="button" class="btn btn-danger" (click)="addFilter()">Add Filter</button>
+    </div>
+    <div class="col-md-8">
+      <meal-list (editMealSender)="editButtonClicked($event)" [history]="history" [filterDirection]="filterDirection" [filterAmount]="filterAmount">meal list not working</meal-list>
     </div>
   </div>
 

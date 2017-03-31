@@ -5,9 +5,6 @@ import { Meal } from './models/meal.model';
   selector: 'meal-list',
   template: `
   <div class="container-fluid">
-    <div class="jumbotron">
-      <h1>{{filterData}}</h1>
-    </div>
     <div class="" *ngFor="let currentMeal of history | calorieSorter">
       <div class="col-sm-4">
         <div class="panel panel-warning">
