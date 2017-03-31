@@ -10,11 +10,15 @@ import { Meal } from './models/meal.model.ts';
   </div>
   <meal-list>meal list not working</meal-list>
   <edit-meal>edit meal not working</edit-meal>
-  <new-meal>new meal not working</new-meal>
+  <new-meal (newMealSender)="addMeal($event)">new meal not working</new-meal>
 
   `
 })
 
 export class AppComponent {
+
+  public addMeal(newMeal: Meal): void {
+    newMeal.addMeal();
+  }
 
 }
