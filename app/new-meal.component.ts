@@ -7,13 +7,15 @@ import { Meal } from './models/meal.model';
   <div class="container">
     <h1>new meal component data: {{testString}}</h1>
     <div class="new-meal-form form-group col-sm-6">
-      <input type="text" name="new-name" [(ngModel)]="newName" class="form-control" placeholder="What meal did you eat?">
-      <input type="number" name="new-calories" [(ngModel)]="newCalories" class="form-control" placeholder="How many calories?">
-      <input type="text" name="new-details" [(ngModel)]="newDetails" class="form-control" placeholder="Any notes you want to add?">
+      <input type="text" name="new-name" [value]="newName" (input)="newName = $event.target.value" class="form-control" placeholder="What meal did you eat?">
+      <input type="number" name="new-calories" [value]="newCalories" (input)="newCalories = $event.target.value" class="form-control" placeholder="How many calories?">
+      <input type="text" name="new-details" [value]="newDetails" (input)="newDetails = $event.target.value" class="form-control" placeholder="Any notes you want to add?">
     </div>
-    <button type="button" class="btn btn-large btn-info" (click)="clickedSaveButton()">Save Meal</button>
-    <div class="bg-danger">
-      <h4>Please make sure you give a name and calories for your meal!</h4>
+    <div class="col-sm-6">
+      <button type="button" class="btn btn-large btn-info" (click)="clickedSaveButton()">Save Meal</button>
+      <div *ngIf="alerting" class="bg-danger">
+        <h4>Please make sure you give a name and calories for your meal!</h4>
+      </div>
     </div>
   </div>
   `
@@ -30,7 +32,7 @@ export class NewMealComponent {
 
   public clickedSaveButton(): void {
     if(this.newName === null || this.newCalories === null) {
-      alert("Please make sure your meal has a name and calories")
+      this.alerting = true;
     } else {
       if (this.newDetails === null || this.newDetails === "") {
         this.newDetails = "No details provided";
@@ -39,7 +41,9 @@ export class NewMealComponent {
       this.newName = null;
       this.newCalories = null;
       this.newDetails = null;
+      this.alerting = false;
       this.newMealSender.emit(newMeal);
     }
+    console.log(this.alerting);
   }
 }
