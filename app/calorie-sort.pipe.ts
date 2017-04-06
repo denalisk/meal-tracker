@@ -11,6 +11,7 @@ export class CaloriePipe implements PipeTransform {
   transform(input: Meal[]) {
     let output: Meal[] = [];
     for(let meal of input) {
+      console.log("The type of the item is " + typeof(meal.calories));
       if (Meal.filterDirection) {
         if (meal.calories > Meal.filterAmount) {
           output.push(meal);

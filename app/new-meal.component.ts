@@ -39,7 +39,7 @@ export class NewMealComponent {
       if (this.newDetails === null || this.newDetails === "") {
         this.newDetails = "No details provided";
       }
-      var newMeal: Meal = new Meal(this.newName, this.newCalories, this.newDetails);
+      var newMeal: Meal = new Meal(this.newName, Number(this.newCalories), this.newDetails);
       this.newName = null;
       this.newCalories = null;
       this.newDetails = null;
